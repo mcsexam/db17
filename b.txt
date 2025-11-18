@@ -1,0 +1,11 @@
+CREATE (:Book {name:"XYZ", type:"Comics"}), (:Book {name:"ABC", type:"Horror"}), (:Author {name:"Amit"}), (:Author {name:"Sunil"}), (:Reader {name:"Rohan"}), (:Reader {name:"Sneha"});
+
+Queries
+
+a) Display names of authors who wrote books of type "Comics" MATCH (a:Author)-[:WROTE]->(b:Book {type:"Comics"}) RETURN a.name;
+
+b) Count number of readers who liked book "XYZ" MATCH (:Reader)-[:READ]->(b:Book {name:"XYZ"}) RETURN count(*) AS total_readers;
+
+c) Display publishers whose name starts with 'N' MATCH (p:Publisher) WHERE p.name STARTS WITH "N" RETURN p.name;
+
+d) Display readers who rated more than 3 stars to book "XYZ" MATCH (r:Reader)-[:RATED]->(b:Book {name:"XYZ"}) WHERE r.stars > 3 RETURN r.name;
